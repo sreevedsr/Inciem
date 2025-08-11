@@ -5,16 +5,14 @@
     font-style: normal;
 }
 
-/* Full blurred background */
 .background {
-margin-top: -30px;
     width: 100%;
-    height: 100vh;
-    background: url("background.jpg") no-repeat top center/cover;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    align-items: left;
+    min-height: 100vh; /* Always fill the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+    align-items: flex-start;
+    padding-left: 0;
 }
 
 /* General page layout */
@@ -23,7 +21,40 @@ body {
     color: white;
     text-align: center;
 }
-
+h1 {
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: clamp(16px, 3.5vw, 40px);
+    text-align: left;
+    padding-left: clamp(10px, 5vw, 60px);
+}
+.mainpage .background{
+        background: url("background.jpg") no-repeat top center/cover;
+}
+.contactpage .background{
+    min-height: clamp();
+    background: url("black_background.jpg") no-repeat top center/cover;
+}
+.contactpage h1{
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 0;
+    font-size: clamp(45px,5vw,70px);
+}
+.contactpage .contact-links{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    width: 100%;
+}
+.contactpage a{
+    color: white;
+    text-decoration: none;
+}
+.contactpage span{
+    color: white;
+}
 /* Transparent blurred navbar */
 nav {
     position: fixed;
@@ -38,17 +69,42 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+}
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between button and hamburger */
+}
+nav.scrolled {
+    background: white;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+nav.scrolled ul li a {
+    color: black;
+}
+/* SVG logo inside navbar */
+.logo {
+    height: 50px;
+    width: 100px; /* Adjust width as needed */
+    margin-left: 30px;
+    background: url("inciem-white.svg") no-repeat center/contain;
+    transition: background-image 0.3s ease;
+}
+@media (min-width: 1024px) {
+    .logo {
+        margin-left: 50px;
+    }
 }
 
-/* SVG logo inside navbar */
-.logo img, .logo svg {
-    height: 50px;
-    width: auto;
-    transition: transform 0.3s ease;
-    margin-left: 50px;
-}
-.logo img:hover, .logo svg:hover {
-    transform: scale(1.1);
+/* When navbar is scrolled — black logo */
+nav.scrolled .logo {
+    background: url("Inciem-dark.svg") no-repeat center/contain;
 }
 
 /* Desktop menu links */
@@ -81,7 +137,7 @@ nav ul li a:hover {
 }
 
 /* Mobile view */
-@media (max-width: 768px) {
+@media (max-width: 825px) {
     nav ul {
         position: absolute;
         top: 80px;
@@ -103,43 +159,66 @@ nav ul li a:hover {
         display: block;
     }
 }
+.contact-button {
+    background-color: #e6753b;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    margin-right: 20px;
+}
+
+.contact-button:hover {
+    background-color: #e69500;
+}
+
+/* Smaller padding & font size for mobile */
+@media (max-width: 825px) {
+    .contact-button {
+        font-size: 14px;
+        padding: 6px 14px;
+        margin-right: 10px;
+    }
+}
+
 
 /* Dynamic text sizes */
-h1 {
-    font-weight: 500;
-    white-space: nowrap;
-    font-size: clamp(16px, 3.5vw, 40px);
-    text-align: left;
-    padding-left: 143px;
-    margin-bottom: px;
-    padding-top: 241px;
-}
 
 .first-line {
     white-space: nowrap;
     font-size: clamp(8px, 2.5vw, 22px);
     text-align: left;
-    padding-left: 143px;
+    padding-left: clamp(10px, 5vw, 60px);
     margin-top: 0px;
 }
 .description{
+    display: flex;
+    flex-wrap: wrap;
     color: black;
     align-items: left;
     font-size: clamp(10px, 2.5vw, 16px);
     text-align: left;
-    padding-left: 100px;
+    padding: 60px 100px;
     text-align: left;
+    gap: 20px;
 }
-.second-line {
-    display: grid;
-    place-items: start;
+.description>.second-line {
+    display: flex;
+    flex: 1 1 50%;
+    align-items: flex-start;
     color: black;
     font-size: 25px;
-    margin-top: 95px;
-    padding-left: 43px;
-    width: 50vw;
     max-width: 100%;
     box-sizing: border-box;
+    
+}
+/* On small screens, make each child full width */
+@media (max-width: 768px) {
+    .description > .second-line {
+        flex: 1 1 100%;
+    }
 }
 .container {
     display: flex;
@@ -147,7 +226,6 @@ h1 {
     margin-top: 50px;
 }
 span {
-    font-weight: 500;
     color: #e6753b;
 }
 @media (max-width: 768px) {
@@ -157,25 +235,11 @@ span {
         margin-top: 40px;
     }
 }
-#menu li:last-child a {
-    background: none;
-    padding-right: 0;
-    border-radius: 0;
-    color: white;
-}
-
-@media (min-width: 769px) {
-    #menu li:last-child a {
-        background-color: #e6753b;
-        color: white;
-        padding: 8px 20px;
-        margin: 100px 10px;
-        border-radius: 40px;
-        font-weight: 500;
-        transition: background 0.3s ease;
-    }
-    #menu li:last-child a:hover {
-        background-color: #e69500; /* darker orange on hover */
+@media (max-width: 1024px) {
+    .second-line {
+        width: 100%;
+        padding-left: 16px;
+        margin-top: 40px; /* smaller, so spacing doesn’t break */
     }
 }
 /* Explore More button styling */
@@ -183,7 +247,7 @@ span {
     display: inline-block;
     background: none;
     color: #ffffff;
-    font-size: 14px;
+    font-size: clamp(12px, 1.2vw, 16px);
     font-weight: 500;
     padding: 8px 20px;
     border: 2px solid #e6753b;
@@ -194,7 +258,8 @@ span {
     margin-top: 0;
     margin-left: 0;
     text-decoration: none;
-    
+    margin-left: clamp(10px, 5vw, 60px);
+
 }
 
 .explore-btn:hover,
