@@ -1,46 +1,159 @@
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
+const menuToggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
 
 // Toggle mobile menu
-menuToggle.addEventListener('click', () => {
-    menu.classList.toggle('show');
+menuToggle.addEventListener("click", () => {
+  menu.classList.toggle("show");
 });
 
 // Close menu when clicking a link
-document.querySelectorAll('#menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        menu.classList.remove('show');
-    });
+document.querySelectorAll("#menu a").forEach((link) => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
 });
 
 // Change navbar background on scroll
 window.addEventListener("scroll", () => {
-    const nav = document.querySelector("nav");
-    if (window.scrollY > 10) { // when user scrolls down
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
+  const nav = document.querySelector("nav");
+  if (window.scrollY > 10) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
 });
 
-// Handle contact form submission
 const contactForm = document.getElementById("contact-form");
+const formOutput = document.getElementById("form-output");
+
 if (contactForm) {
-    contactForm.addEventListener("submit", function(e) {
-        e.preventDefault(); // prevent page reload
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearErrors();
 
-        const firstName = document.getElementById("first-name").value;
-        const lastName = document.getElementById("last-name").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-        const message = document.getElementById("message").value;
+    const firstName = contactForm["first_name"].value.trim();
+    const lastName = contactForm["last_name"].value.trim();
+    const email = contactForm["email"].value.trim();
+    const phone = contactForm["phone"].value.trim();
+    const message = contactForm["message"].value.trim();
 
-        document.getElementById("form-output").innerHTML = `
-            <p><strong>First Name:</strong> ${firstName}</p>
-            <p><strong>Last Name:</strong> ${lastName}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Message:</strong> ${message}</p>
-        `;
-    });
+    let isValid = true;
+
+    if (firstName === "") {
+      showError(
+        "first-name",
+        "First name cannot be empty. Please enter your first name."
+      );
+      isValid = false;
+    }
+    if (lastName === "") {
+      showError(
+        "last-name",
+        "Last name cannot be empty. Please enter your last name."
+      );
+      isValid = false;
+    }
+    if (email === "") {
+      showError("email", "Email address is required. Please enter your email.");
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      showError(
+        "email",
+        "Invalid email format. Please enter a valid email like example@domain.com."
+      );
+      isValid = false;
+    }
+    if (!phone) {
+      showError("phone", "Phone number is required.");
+      isValid = false;
+    } else if (!/^\+?[0-9\s\-]{7,15}$/.test(phone)) {
+      showError(
+        "phone",
+        "Please enter a valid phone number with 7 to 15 digits."
+      );
+      isValid = false;
+    }
+
+    if (!isValid) {
+      formOutput.innerHTML = "";
+      formOutput.style.display = "none";
+      return;
+    }
+
+    formOutput.innerHTML = `
+      <h3>Submitted Details:</h3>
+      <p><strong>First Name:</strong> ${escapeHTML(firstName)}</p>
+      <p><strong>Last Name:</strong> ${escapeHTML(lastName)}</p>
+      <p><strong>Email:</strong> ${escapeHTML(email)}</p>
+      <p><strong>Phone:</strong> ${escapeHTML(phone) || "N/A"}</p>
+      <p><strong>Message:</strong> ${escapeHTML(message)}</p>
+    `;
+    formOutput.style.display = "block";
+
+    contactForm.reset();
+  });
 }
+
+function showError(fieldId, message) {
+  const field = document.getElementById(fieldId);
+  if (!field) return;
+
+  // Create error message element
+  let error = document.createElement("small");
+  error.className = "error-message";
+  error.style.color = "red";
+  error.textContent = message;
+
+  // Insert error message if not already present
+  if (
+    !field.nextElementSibling ||
+    !field.nextElementSibling.classList.contains("error-message")
+  ) {
+    field.parentNode.insertBefore(error, field.nextSibling);
+  }
+}
+
+function clearErrors() {
+  document.querySelectorAll(".error-message").forEach((el) => el.remove());
+}
+
+function validateEmail(email) {
+  // Simple email regex validation
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHTML(text) {
+  // Basic escape to prevent XSS attacks in output
+  return text.replace(/[&<>"']/g, function (m) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[m];
+  });
+}
+const formElements = Array.from(
+  document.querySelectorAll("#contact-form input, #contact-form textarea")
+);
+
+const sendButton = document.querySelector(
+  '#contact-form button[type="submit"]'
+);
+
+formElements.forEach((el, index) => {
+  el.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const nextIndex = index + 1;
+
+      if (nextIndex < formElements.length) {
+        formElements[nextIndex].focus();
+      } else {
+        sendButton.focus();
+      }
+    }
+  });
+});
+

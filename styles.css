@@ -20,7 +20,51 @@ body {
   align-items: flex-start;
   padding-left: 0;
 }
+section{
+    text-align: left;
+    margin: 20px;
+}
+@media(min-width:1200px){
+    section.location{
+        margin: 45px;
+    }
+}
+p{
+    color: #837B77;
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin: 20px;
 
+}
+.contact-links{
+    color: #000;
+
+}
+.contact-links a{
+    text-decoration: none;
+}
+.contact-detail{
+    margin: 0;
+}
+address{
+    color: #837B77;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+h4{
+    color: #1A1A1A;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+#get-in-touch-para{
+    margin-top: 46px;
+}
+@media(min-width:1200px){
+    #get-in-touch-para{
+        margin: 45px;
+    }
+}
 nav {
   position: fixed;
   top: 0;
@@ -72,6 +116,11 @@ nav.scrolled ul li a {
 nav.scrolled .logo {
   background: url("Inciem-dark.svg") no-repeat center/contain;
 }
+nav.scrolled .menu-toggle {
+  color: black;
+}
+
+
 
 nav ul {
   list-style: none;
@@ -93,15 +142,61 @@ nav ul li a:hover {
 }
 
 .menu-toggle {
-  display: none;
-  font-size: 24px;
+  color: white;
+  display: none; /* already in your CSS */
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
+  padding-right: 10px;
+  width: 30px;  /* width of hamburger container */
+  height: 30px; /* height of hamburger container */
+  position: relative;
+  box-sizing: content-box;
 }
 
-@media (max-width: 825px) {
+.menu-toggle .line {
+  display: block;
+  height: 1.5px;           /* thickness of each line */
+  background-color: white;
+  margin-bottom: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 1px;    /* spacing between lines */
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+/* Different widths for each line */
+.menu-toggle .line1 {
+  width: 100%;  /* longest */
+}
+
+.menu-toggle .line2 {
+  width: 75%;   /* shorter than 1 and 3 */
+}
+
+.menu-toggle .line3 {
+  width: 100%;  /* same as 1st */
+}
+
+.menu-toggle .line4 {
+  width: 50%;   /* shortest */
+  margin-bottom: 0; /* remove bottom margin on last line */
+}
+/* Change hamburger line color when scrolled */
+nav.scrolled .menu-toggle .line {
+  background-color: black; /* Or your desired color */
+}
+
+
+/* Show menu-toggle on small screens as before */
+@media (max-width: 840px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+@media (max-width: 840px) {
   nav ul {
     position: absolute;
     top: 80px;
@@ -116,9 +211,10 @@ nav ul li a:hover {
     display: flex;
   }
   nav ul li {
-    text-align: right;
+    text-align: center;
     margin: 10px 0;
   }
+  
   .menu-toggle {
     display: block;
   }
@@ -142,7 +238,7 @@ nav ul li a:hover {
 @media (max-width: 825px) {
   .contact-button {
     font-size: 14px;
-    padding: 6px 14px;
+    padding: 8px px;
     margin-right: 10px;
   }
 }
@@ -161,12 +257,34 @@ h1 {
   padding-left: 0;
   font-size: clamp(45px, 5vw, 70px);
 }
+.contact-info a {
+  color: #837B77;           /* or any color you want */
+  text-decoration: none;  /* remove underline */
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* optional hover effect */
+  color: #e6753b;             /* example highlight on hover */
+}
 
 .contactpage h2 {
   color: black;
   font-size: 50px;
+  margin: 20px;
 }
-
+@media(min-width:1200px){
+    .contactpage h2{
+        margin: 45px;
+    }
+}
+.contactpage h3 {
+  color: black;
+  font-size: 30px;
+  text-align: left;
+}
+.contactpage label{
+    margin-top: 35px;
+}
 @media (max-width: 1080px) {
   .contactpage h2 {
     display: none;
@@ -196,13 +314,40 @@ h1 {
   width: 100%;
 }
 
-.contactpage a {
+.contactpage span {
   color: white;
   text-decoration: none;
 }
+.contact-container {
+  display: flex;
+  flex-direction: column; /* stacked by default */
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0;
+  padding: 0;
+}
 
-.contactpage span {
-  color: white;
+.contact-left,
+.contact-right {
+  flex: 1;
+}
+
+/* Large screens: side-by-side */
+@media (min-width: 992px) {
+  .contact-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .contact-left {
+    max-width: 50%;
+    padding-right: 40px;
+  }
+
+  .contact-right {
+    max-width: 50%;
+    
+  }
 }
 
 .first-line {
@@ -291,8 +436,7 @@ span {
 }
 
 .contact-form {
-  max-width: 600px;
-  margin: 40px auto;
+  max-width: none;
   padding: 20px;
   background: #fff;
   color: #333;
@@ -365,26 +509,84 @@ span {
 .contact-form button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #e6753b;
   border: none;
   border-radius: 6px;
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  will-change: transform;
+  perspective: 600px;
+  margin: 0;
+}
+
+/* When screen width is 764px or more */
+@media (min-width: 764px) {
+  .contact-form button {
+    width: 300px; /* or any width you prefer */
+    max-width: 100%; /* so it doesn’t overflow smaller containers */
+  }
 }
 
 .contact-form button:hover {
-  background-color: #0056b3;
+  background-color: #d96420; /* Slightly darker orange on hover */
 }
 
 #form-output {
+    display: none;
+  position: relative;
   margin-top: 20px;
-  background: #f8f9fa;
-  padding: 15px;
-  border-left: 4px solid #007bff;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  color: #333;
+  padding: 40px 24px 24px 24px;
+  border-radius: 15px;
+  background-color: rgba(230, 117, 59, 0.03); /* very subtle orange tint */
+  box-shadow:
+    0px 3px 6px rgba(0, 0, 0, 0.05),
+    0px 8px 15px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(230, 117, 59, 0.15); /* faint orange border */
+
+  font-size: 1rem;
+  color: #e6753b; /* brand accent color for text */
+  line-height: 1.5;
+  font-weight: 500;
+  overflow: hidden;
+  cursor: default;
+  user-select: text;
+  transition: box-shadow 0.25s ease;
+}
+
+#form-output::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  pointer-events: none;
+  background: conic-gradient(
+    from 205deg at 50% 50%,
+    rgba(230, 117, 59, 0) 0deg,
+    #e6753b 25deg,
+    rgba(230, 117, 59, 0.15) 295deg,
+    rgba(230, 117, 59, 0) 360deg
+  );
+  opacity: 0.1;
+  z-index: 0;
+}
+
+#form-output:hover {
+  box-shadow:
+    0px 6px 12px rgba(0, 0, 0, 0.06),
+    0px 18px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(230, 117, 59, 0.4);
+}
+
+
+
+.error-message {
+  color: #d93025; /* A clear red color */
+  font-size: 0.875rem; /* Slightly smaller than default text */
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
