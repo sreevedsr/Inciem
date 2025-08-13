@@ -1,3 +1,58 @@
+// Current and target scroll positions
+let currentScroll = window.scrollY;
+let targetScroll = window.scrollY;
+
+// Easing factor (smaller = slower, smoother)
+const ease = 0.1; 
+
+// Smooth scrolling loop
+function smoothScrollLoop() {
+  // Interpolate towards the target scroll position
+  currentScroll += (targetScroll - currentScroll) * ease;
+  
+  // Move the window to the new eased position
+  window.scrollTo(0, currentScroll);
+  
+  requestAnimationFrame(smoothScrollLoop);
+}
+
+// Mouse wheel scrolling
+window.addEventListener('wheel', (e) => {
+  targetScroll += e.deltaY; // deltaY is the wheel movement amount
+  
+  // Clamp target so you can't scroll beyond limits
+  targetScroll = Math.max(0, Math.min(
+    targetScroll, 
+    document.body.scrollHeight - window.innerHeight
+  ));
+  
+  // Prevent the default instant jump
+  e.preventDefault();
+}, { passive: false });
+
+// Touch scrolling
+let touchStartY = 0;
+window.addEventListener('touchstart', (e) => {
+  touchStartY = e.touches[0].clientY;
+});
+window.addEventListener('touchmove', (e) => {
+  let touchY = e.touches[0].clientY;
+  let deltaY = touchStartY - touchY;
+  targetScroll += deltaY;
+  targetScroll = Math.max(0, Math.min(
+    targetScroll, 
+    document.body.scrollHeight - window.innerHeight
+  ));
+  touchStartY = touchY;
+  e.preventDefault();
+}, { passive: false });
+
+// Start the smooth scroll animation
+smoothScrollLoop();
+
+
+
+
 const menuToggle = document.getElementById("menu-toggle");
 const menu = document.getElementById("menu");
 
@@ -157,3 +212,23 @@ formElements.forEach((el, index) => {
   });
 });
 
+const closeMenu = document.getElementById("close-menu");
+
+// Open menu
+menuToggle.addEventListener("click", () => {
+  menu.classList.add("show");
+});
+
+// Close menu (close button)
+if (closeMenu) {
+  closeMenu.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
+}
+
+// Close menu when clicking a link
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
+});

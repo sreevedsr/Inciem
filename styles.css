@@ -20,50 +20,59 @@ body {
   align-items: flex-start;
   padding-left: 0;
 }
-section{
-    text-align: left;
-    margin: 20px;
+section {
+  text-align: left;
+  margin: 20px;
+  display: flex;
+  justify-content:space-evenly;
 }
-@media(min-width:1200px){
-    section.location{
-        margin: 45px;
-    }
+section.location{
+  display: flex;
+  flex-direction: column;
 }
-p{
-    color: #837B77;
-    font-size: 15px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    margin: 20px;
-
+@media (min-width: 1200px) {
+  section.location {
+    margin: 45px;
+  }
 }
-.contact-links{
-    color: #000;
-
+p {
+  color: #837b77;
+  font-size: 15px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin: 20px;
 }
-.contact-links a{
-    text-decoration: none;
+.contact-links {
+  color: #000;
 }
-.contact-detail{
-    margin: 0;
+.contact-links a {
+  text-decoration: none;
 }
-address{
-    color: #837B77;
-    font-size: 15px;
-    margin-bottom: 10px;
+.contact-detail {
+  margin: 0;
 }
-h4{
-    color: #1A1A1A;
-    font-size: 18px;
-    margin-bottom: 30px;
+address {
+  color: #837b77;
+  font-size: 15px;
+  margin-bottom: 10px;
 }
-#get-in-touch-para{
-    margin-top: 46px;
+h4 {
+  color: #1a1a1a;
+  font-size: 18px;
+  margin-bottom: 30px;
 }
-@media(min-width:1200px){
-    #get-in-touch-para{
-        margin: 45px;
-    }
+#get-in-touch-para {
+  margin-top: 46px;
+}
+@media (min-width: 1200px) {
+  #get-in-touch-para {
+    margin: 45px;
+  }
+}
+@media (min-width: 840px){
+  .menu-header{
+    display: none;
+  }
 }
 nav {
   position: fixed;
@@ -94,7 +103,6 @@ nav.scrolled {
   -webkit-backdrop-filter: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
-
 nav.scrolled ul li a {
   color: black;
 }
@@ -116,12 +124,10 @@ nav.scrolled ul li a {
 nav.scrolled .logo {
   background: url("Inciem-dark.svg") no-repeat center/contain;
 }
-nav.scrolled .menu-toggle {
-  color: black;
+nav.scrolled .menu-header .logo{
+    background: url("inciem-white.svg") no-repeat center/contain;
+
 }
-
-
-
 nav ul {
   list-style: none;
   margin: 0;
@@ -142,13 +148,12 @@ nav ul li a:hover {
 }
 
 .menu-toggle {
-  color: white;
   display: none; /* already in your CSS */
   background: none;
   border: none;
   cursor: pointer;
   padding-right: 10px;
-  width: 30px;  /* width of hamburger container */
+  width: 30px; /* width of hamburger container */
   height: 30px; /* height of hamburger container */
   position: relative;
   box-sizing: content-box;
@@ -156,37 +161,36 @@ nav ul li a:hover {
 
 .menu-toggle .line {
   display: block;
-  height: 1.5px;           /* thickness of each line */
+  height: 1.5px; /* thickness of each line */
   background-color: white;
   margin-bottom: 5px;
   margin-bottom: 5px;
-  padding-bottom: 1px;    /* spacing between lines */
+  padding-bottom: 1px; /* spacing between lines */
   transition: all 0.3s ease;
   margin-left: auto;
 }
 
 /* Different widths for each line */
 .menu-toggle .line1 {
-  width: 100%;  /* longest */
+  width: 100%; /* longest */
 }
 
 .menu-toggle .line2 {
-  width: 75%;   /* shorter than 1 and 3 */
+  width: 75%; /* shorter than 1 and 3 */
 }
 
 .menu-toggle .line3 {
-  width: 100%;  /* same as 1st */
+  width: 100%; /* same as 1st */
 }
 
 .menu-toggle .line4 {
-  width: 50%;   /* shortest */
+  width: 50%; /* shortest */
   margin-bottom: 0; /* remove bottom margin on last line */
 }
 /* Change hamburger line color when scrolled */
 nav.scrolled .menu-toggle .line {
   background-color: black; /* Or your desired color */
 }
-
 
 /* Show menu-toggle on small screens as before */
 @media (max-width: 840px) {
@@ -195,28 +199,70 @@ nav.scrolled .menu-toggle .line {
   }
 }
 
-
 @media (max-width: 840px) {
   nav ul {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
     flex-direction: column;
-    width: 200px;
-    display: none;
-    padding: 1rem;
+    width: 100vw; /* Full screen width */
+    height: 100vh; /* Full screen height */
+    background: rgba(0, 0, 0, 0.95); /* Dark overlay */
+    transform: translateX(-100%); /* Start hidden off-screen */
+    transition: transform 0.3s ease; /* Smooth slide in */
+    padding: 2rem;
+    z-index: 999; /* On top of everything */
   }
+
+  /* Show menu when toggled */
   nav ul.show {
+    transform: translateX(0);
+  }
+  .menu-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .menu-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .close-menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
   }
   nav ul li {
     text-align: center;
-    margin: 10px 0;
+    margin: 20px 0;
   }
-  
+
+  nav ul li a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  nav ul li a:hover {
+    color: #ffcc00;
+  }
+nav.scrolled ul li a {
+  color: white;
+}
   .menu-toggle {
     display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
   }
 }
 
@@ -258,13 +304,13 @@ h1 {
   font-size: clamp(45px, 5vw, 70px);
 }
 .contact-info a {
-  color: #837B77;           /* or any color you want */
-  text-decoration: none;  /* remove underline */
+  color: #837b77; /* or any color you want */
+  text-decoration: none; /* remove underline */
 }
 
 .contact-info a:hover {
   text-decoration: underline; /* optional hover effect */
-  color: #e6753b;             /* example highlight on hover */
+  color: #e6753b; /* example highlight on hover */
 }
 
 .contactpage h2 {
@@ -272,18 +318,18 @@ h1 {
   font-size: 50px;
   margin: 20px;
 }
-@media(min-width:1200px){
-    .contactpage h2{
-        margin: 45px;
-    }
+@media (min-width: 1200px) {
+  .contactpage h2 {
+    margin: 45px;
+  }
 }
 .contactpage h3 {
   color: black;
   font-size: 30px;
   text-align: left;
 }
-.contactpage label{
-    margin-top: 35px;
+.contactpage label {
+  margin-top: 35px;
 }
 @media (max-width: 1080px) {
   .contactpage h2 {
@@ -319,8 +365,10 @@ h1 {
   text-decoration: none;
 }
 .contact-container {
+  flex: 1;
   display: flex;
-  flex-direction: column; /* stacked by default */
+  flex-direction: column;
+  justify-content: center; /* stacked by default */
   gap: 40px;
   max-width: 1200px;
   margin: 0;
@@ -346,7 +394,6 @@ h1 {
 
   .contact-right {
     max-width: 50%;
-    
   }
 }
 
@@ -535,15 +582,13 @@ span {
 }
 
 #form-output {
-    display: none;
+  display: none;
   position: relative;
   margin-top: 20px;
   padding: 40px 24px 24px 24px;
   border-radius: 15px;
   background-color: rgba(230, 117, 59, 0.03); /* very subtle orange tint */
-  box-shadow:
-    0px 3px 6px rgba(0, 0, 0, 0.05),
-    0px 8px 15px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05), 0px 8px 15px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(230, 117, 59, 0.15); /* faint orange border */
 
   font-size: 1rem;
@@ -557,7 +602,7 @@ span {
 }
 
 #form-output::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 15px;
@@ -574,13 +619,9 @@ span {
 }
 
 #form-output:hover {
-  box-shadow:
-    0px 6px 12px rgba(0, 0, 0, 0.06),
-    0px 18px 30px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(230, 117, 59, 0.4);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.06),
+    0px 18px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(230, 117, 59, 0.4);
 }
-
-
 
 .error-message {
   color: #d93025; /* A clear red color */
