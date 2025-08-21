@@ -9,7 +9,6 @@
   font-style: normal;
 }
 
-
 body {
   margin: 0;
   color: white;
@@ -25,14 +24,12 @@ body {
   width: 350px;
   height: auto;
 
-  /* Tilt by default */
   transform: rotate(-5deg);
-  transition: transform 0.3s ease; /* smooth animation */
-  transform-origin: center; /* pivot around center */
+  transition: transform 0.3s ease; 
+  transform-origin: center;
 }
 
 .partner-image:hover {
-  /* Rotate a little more on hover */
   transform: rotate(0deg);
 }
 
@@ -66,15 +63,16 @@ body {
 }
 .background-last-text {
   margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
 .background-last-text p {
   margin: 0;
   color: white;
+
+  font-size: clamp(8px, 1.5vw, 22px);
 }
 .we-are-inciem {
+  margin: 20rem;
   font-weight: bold;
-  font-size: 20px;
 }
 
 /* =========================================
@@ -93,7 +91,6 @@ h1 {
   white-space: nowrap;
   text-align: left;
   font-size: clamp(15px, 5vw, 45px);
-
 }
 
 .contactpage h1 {
@@ -132,7 +129,7 @@ p {
   margin-bottom: 0px;
   margin-top: 0px;
 }
-.proficiency p{
+.proficiency p {
   color: #000;
 }
 .pioneering {
@@ -152,20 +149,20 @@ p {
   align-items: end;
 }
 
-@media (max-width:768px){
-  section{
+@media (max-width: 768px) {
+  section {
     margin: 20px;
     padding: 10px;
   }
   .pioneering {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
   .pioneering h2 {
-  font-size: 23px;
-}
+    font-size: 23px;
+  }
 }
 .info-carousel {
   display: flex;
@@ -196,16 +193,14 @@ p {
   display: block;
 }
 
-/* Info panel hidden by default */
 .info-content {
   position: absolute;
-  bottom: 20px; /* distance from bottom */
-  left: 50%; /* horizontally center */
+  bottom: 20px; 
+  left: 50%; 
   transform: translateX(-50%);
   width: 90%;
   background: rgba(100, 100, 100, 0.7);
-   /* your desired color */
-  backdrop-filter: blur(15px);          /* strong blur effect */
+  backdrop-filter: blur(15px); 
   -webkit-backdrop-filter: blur(15px);
   padding: 15px;
   box-sizing: border-box;
@@ -216,24 +211,22 @@ p {
   padding: 30px;
 }
 
-/* On hover, slide it up */
 .info-box:hover .info-content {
-  opacity: 1; /* fully visible on hover */
+  opacity: 1; 
 }
-.info-content h3{
+.info-content h3 {
   color: white;
   font-size: 22px;
-  margin:10px 0;
+  margin: 10px 0;
   margin-top: 0;
   padding: 0;
 }
 
-.info-content p{
+.info-content p {
   color: white;
   font-size: 14px;
 }
 
-/* Disable auto scroll on larger screens */
 @media (min-width: 768px) {
   .info-box {
     width: 300px;
@@ -243,30 +236,30 @@ p {
     overflow-x: visible;
   }
 }
-.team-div{
+.team-div {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
-.team-div img{
+.team-div img {
   width: 20%;
   height: auto;
   object-fit: cover;
   border-radius: 10px;
 }
 .team-talk {
-  border: 1px solid #808080;        /* black border, 2px thick */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
-  border-radius: 8px;             /* optional rounded corners */
-  padding: 30px;                /* optional padding inside */
+  border: 1px solid #808080; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
+  padding: 30px; 
 }
-section .team-talk h4{
+section .team-talk h4 {
   font-size: 32px;
   font-weight: 350;
   text-transform: none;
   margin-top: 0;
 }
-section .team-talk p{
+section .team-talk p {
   font-size: 16px;
   color: #000;
   text-transform: none;
@@ -275,23 +268,22 @@ section .team-talk p{
   line-height: 200%;
 }
 
-.proficiency.research{
-  background-color: #F5F7F9;
+.proficiency.research {
+  background-color: #f5f7f9;
   margin: 0;
   padding: 80px 60px 50px;
 }
 
-@media (max-width:768px){
+@media (max-width: 768px) {
   .main-quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: left;
-  margin: 20px;
-  padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    margin: 20px;
+    padding: 10px;
+  }
 }
-
-} 
 
 /* =========================================
    Buttons
@@ -364,16 +356,15 @@ section .team-talk p{
   margin: 0;
 }
 
-/* When screen width is 764px or more */
 @media (min-width: 764px) {
   .contact-form button {
-    width: 300px; /* or any width you prefer */
-    max-width: 100%; /* so it doesn’t overflow smaller containers */
+    width: 300px; 
+    max-width: 100%; 
   }
 }
 
 .contact-form button:hover {
-  background-color: #d96420; /* Slightly darker orange on hover */
+  background-color: #d96420; 
 }
 
 /* =========================================
@@ -394,45 +385,45 @@ section .team-talk p{
   margin-bottom: 0;
   font-weight: 500;
 }
-@media (max-width:768px){
+@media (max-width: 768px) {
   .proficiency-heading {
-  color: #000;
-  font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 25px
+    color: #000;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
 }
-}
-section.panoramic {
+.panoramic {
   margin: 0;
-  padding: 0;
+  padding: 0; 
+  background: url("./panoramic.jpg");
+  width: 100%;
+  height: 100%;
+  
 }
 
 .panoramic-background {
-  position: relative;
   width: 100%;
-  height: auto; /* scales with viewport width */
+  height: auto; 
 }
 
 .panoramic-background img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills the area, crops edges if needed */
+  object-fit: cover; 
   display: block;
 }
 
 .panoramic-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* make overlay span image */
-  height: 100%; /* optional: full cover */
-  display: flex; /* ensures children respect margin/padding */
+  width: 100%; 
+  height: 100%; 
+  display: flex; 
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* aligns text at top */
+  justify-content: center;
   color: #fff;
   z-index: 2;
-  padding: 60px; /* recommended: use padding for spacing */
+  padding: 60px;
   display: flex;
   flex-direction: row;
 }
@@ -450,37 +441,30 @@ section.panoramic {
 }
 .panoramic-right {
   display: flex;
-  gap: 20px; /* space between the boxes */
-  justify-content: flex-start; /* or center if you prefer */
-  flex-wrap: wrap; /* makes them wrap on smaller screens */
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: column;
 }
 
 .frosted-box {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* keeps text aligned left */
-
+  align-items: flex-start; 
+  white-space: nowrap;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   text-align: left;
   color: #fff;
   font-weight: 500;
-
-  /* glass blur */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
-  /* border & shadow */
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-
-  /* responsive width */
-  width: clamp(200px, 25vw, 300px);
-  height: clamp(180px, 20vh, 250px);
   padding: 20px;
 }
 
@@ -489,7 +473,6 @@ section.panoramic {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* headings inside frosted-box */
 .frosted-box h3 {
   margin: 0 0 10px 0;
   font-size: 2rem;
@@ -507,34 +490,36 @@ section.panoramic {
 
 @media (max-width: 768px) {
   .panoramic-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* make overlay span image */
-  height: 100%; /* optional: full cover */
-  display: flex; /* ensures children respect margin/padding */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* aligns text at top */
-  color: #fff;
-  z-index: 2; /* recommended: use padding for spacing */
-  display: flex;
-  flex-direction: column;
-}
-  .panoramic-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .frosted-box {
-    width: 90%; /* safer than fixed 500px */
+    justify-content: center; 
+    color: #fff;
+    z-index: 2; 
+    display: flex;
+    flex-direction: column;
     
   }
-  .panoramic-overlay p{
+  .panoramic-right {
+    margin: 20px 0px;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+  .panoramic-overlay p {
     padding: 0;
     margin: 0;
   }
+  .frosted-box h3 {
+    font-size: 1.5rem;
+  }
+  .frosted-box h4 {
+    font-size: 1.2rem;
+  }
 }
-
 
 .container {
   display: flex;
@@ -581,7 +566,7 @@ section.panoramic {
   padding: 40px 20px;
   display: flex;
   overflow-x: scroll;
-  scroll-behavior: auto; /* manual control */
+  scroll-behavior: auto;
   scrollbar-width: none;
   gap: 10px;
   padding: 20px;
@@ -590,22 +575,19 @@ section.panoramic {
 .parent::before {
   content: "";
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
+  top: 50%; 
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
   height: 400px;
   background: radial-gradient(circle, #4caf50, #2e7d32);
   border-radius: 50%;
-  z-index: -1; /* Push behind content */
+  z-index: -1; 
 }
 
 .card-scroller::-webkit-scrollbar {
   display: none;
 }
-
-
-
 
 /* =========================================
    Cards & Scrollers
@@ -623,7 +605,7 @@ section.panoramic {
   font-weight: bold;
   border-radius: 8px;
   user-select: none;
-  min-height: 150px; /* starting height */
+  min-height: 150px; 
   box-sizing: border-box;
   overflow: hidden;
   padding: 50px 30px 30px;
@@ -636,12 +618,12 @@ section.panoramic {
   display: flex;
   flex-direction: row;
   text-align: center;
-  justify-content: center; /* center text horizontally */
+  justify-content: center;
   align-items: center;
   font-weight: bold;
   border-radius: 8px;
   user-select: none;
-  min-height: 150px; /* starting height */
+  min-height: 150px;
   box-sizing: border-box;
   overflow: hidden;
   padding: 50px 30px 30px;
@@ -652,7 +634,7 @@ section.panoramic {
   white-space: nowrap;
   font-size: clamp(23px, 5vw, 92px);
   font-weight: 500;
-  -webkit-text-stroke: 1px black; /* Width and color of the stroke */
+  -webkit-text-stroke: 1px black; 
   color: transparent;
 }
 .card1 h3 .a {
@@ -661,7 +643,7 @@ section.panoramic {
   font-weight: 500;
 }
 .b {
-  background-color: #F5F7F9;
+  background-color: #f5f7f9;
 }
 .card2 {
   flex: 0 0 auto;
@@ -674,22 +656,22 @@ section.panoramic {
   font-weight: bold;
   border-radius: 8px;
   user-select: none;
-  min-height: 150px; /* starting height */
+  min-height: 150px; 
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .card2 img {
-  width: 100%; /* full width of card */
-  height: 200px; /* fixed height for all images */
-  object-fit: cover; /* maintain aspect ratio and crop if needed */
-  display: block; /* removes inline spacing below image */
-  margin: 0; /* ignore card padding */
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  display: block;
+  margin: 0;
   padding: 0;
   border-radius: 8px;
 }
 
-.card-container{
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -697,7 +679,6 @@ section.panoramic {
   align-items: top;
   justify-content: center;
 }
-
 
 .card3 {
   flex: 0 0 auto;
@@ -710,54 +691,50 @@ section.panoramic {
   font-weight: bold;
   border-radius: 8px;
   user-select: none;
-  min-height: 150px; /* starting height */
+  min-height: 150px; 
   box-sizing: border-box;
   overflow: hidden;
-  align-items:start;
+  align-items: start;
 }
 
 .card3 img {
-  width: 100%; /* full width of card */
-  height: 200px; /* fixed height for all images */
-  object-fit: cover; /* maintain aspect ratio and crop if needed */
-  display: block; /* removes inline spacing below image */
-  margin: 0; /* ignore card padding */
+  width: 100%;
+  height: 200px;
+  object-fit: cover; 
+  display: block;
+  margin: 0; 
   padding: 0;
   border-radius: 8px;
 }
 
-.card3 h3{
+.card3 h3 {
   padding: 0px 30px;
   font-size: 22px;
   margin-top: 0;
 }
 
-.card3 p{
+.card3 p {
   padding: 0px 30px;
   font-size: 16px;
   margin-bottom: 30px;
 }
 
 .card3 h4 {
-  display: block;       /* shrink to fit content */
-  background-color: #E5E5E5;
+  display: block;
+  background-color: #e5e5e5;
   color: #000;
   font-size: 15px;
-  height: 30px;/* vertical centering */
+  height: 30px; 
   text-transform: none;
   border-radius: 30px;
   font-weight: 300;
-  padding: 5px 15px;             /* horizontal padding */
-  white-space: nowrap;          /* prevent wrapping */
+  padding: 5px 15px; 
+  white-space: nowrap;
   box-sizing: border-box;
   cursor: pointer;
-
-  /* Center horizontally in column flex parent */
-  align-self: flex-start;           /* important: centers only this item */
+  align-self: flex-start;
   margin: 20px 30px;
 }
-
-
 
 @media (fullscreen) {
   .card {
@@ -809,7 +786,7 @@ address {
   display: flex;
   gap: 20px;
   align-items: stretch;
-  overflow-x: hidden; /* hide native scrollbar */
+  overflow-x: hidden; 
 }
 
 .carousel-wrap1 {
@@ -822,7 +799,7 @@ address {
   display: flex;
   gap: 20px;
   align-items: stretch;
-  overflow-x: hidden; /* hide native scrollbar */
+  overflow-x: hidden; 
 }
 
 /* =========================================
@@ -907,51 +884,48 @@ nav ul li a:hover {
 }
 
 .menu-toggle {
-  display: none; /* already in your CSS */
+  display: none; 
   background: none;
   border: none;
   cursor: pointer;
   padding-right: 10px;
-  width: 30px; /* width of hamburger container */
-  height: 30px; /* height of hamburger container */
+  width: 30px; 
+  height: 30px; 
   position: relative;
   box-sizing: content-box;
 }
 
 .menu-toggle .line {
   display: block;
-  height: 1.5px; /* thickness of each line */
+  height: 1.5px; 
   background-color: white;
   margin-bottom: 5px;
   margin-bottom: 5px;
-  padding-bottom: 1px; /* spacing between lines */
+  padding-bottom: 1px; 
   transition: all 0.3s ease;
   margin-left: auto;
 }
 
-/* Different widths for each line */
 .menu-toggle .line1 {
-  width: 100%; /* longest */
+  width: 100%;
 }
 
 .menu-toggle .line2 {
-  width: 75%; /* shorter than 1 and 3 */
+  width: 75%; 
 }
 
 .menu-toggle .line3 {
-  width: 100%; /* same as 1st */
+  width: 100%; 
 }
 
 .menu-toggle .line4 {
-  width: 50%; /* shortest */
-  margin-bottom: 0; /* remove bottom margin on last line */
+  width: 50%; 
+  margin-bottom: 0; 
 }
-/* Change hamburger line color when scrolled */
 nav.scrolled .menu-toggle .line {
-  background-color: black; /* Or your desired color */
+  background-color: black; 
 }
 
-/* Show menu-toggle on small screens as before */
 @media (max-width: 840px) {
   .menu-toggle {
     display: block;
@@ -968,16 +942,15 @@ nav.scrolled .menu-toggle .line {
     top: 0;
     left: 0;
     flex-direction: column;
-    width: 100vw; /* Full screen width */
-    height: 100vh; /* Full screen height */
-    background: rgba(0, 0, 0, 0.95); /* Dark overlay */
-    transform: translateX(-100%); /* Start hidden off-screen */
-    transition: transform 0.3s ease; /* Smooth slide in */
+    width: 100vw;
+    height: 100vh; 
+    background: rgba(0, 0, 0, 0.95); 
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease;
     padding: 2rem;
-    z-index: 999; /* On top of everything */
+    z-index: 999;
   }
 
-  /* Show menu when toggled */
   nav ul.show {
     transform: translateX(0);
   }
@@ -1034,13 +1007,13 @@ nav.scrolled .menu-toggle .line {
 ========================================= */
 
 .contact-info a {
-  color: #837b77; /* or any color you want */
-  text-decoration: none; /* remove underline */
+  color: #837b77;
+  text-decoration: none;
 }
 
 .contact-info a:hover {
-  text-decoration: underline; /* optional hover effect */
-  color: #e6753b; /* example highlight on hover */
+  text-decoration: underline; 
+  color: #e6753b;
 }
 
 .contactpage h2 {
@@ -1100,7 +1073,7 @@ nav.scrolled .menu-toggle .line {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* stacked by default */
+  justify-content: center; 
   gap: 40px;
   max-width: 1200px;
   margin: 0;
@@ -1112,7 +1085,6 @@ nav.scrolled .menu-toggle .line {
   flex: 1;
 }
 
-/* Large screens: side-by-side */
 @media (min-width: 992px) {
   .contact-container {
     flex-direction: row;
@@ -1137,7 +1109,7 @@ nav.scrolled .menu-toggle .line {
   color: white;
 }
 
-#countergradient{
+#countergradient {
   font-size: 69px;
   background: linear-gradient(to bottom, #ac22bd, #4320ad);
   background-clip: text;
@@ -1261,12 +1233,12 @@ nav.scrolled .menu-toggle .line {
   margin-top: 20px;
   padding: 40px 24px 24px 24px;
   border-radius: 15px;
-  background-color: rgba(230, 117, 59, 0.03); /* very subtle orange tint */
+  background-color: rgba(230, 117, 59, 0.03);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05), 0px 8px 15px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(230, 117, 59, 0.15); /* faint orange border */
+    0 0 0 1px rgba(230, 117, 59, 0.15);
 
   font-size: 1rem;
-  color: #e6753b; /* brand accent color for text */
+  color: #e6753b; 
   line-height: 1.5;
   font-weight: 500;
   overflow: hidden;
@@ -1298,8 +1270,8 @@ nav.scrolled .menu-toggle .line {
 }
 
 .error-message {
-  color: #d93025; /* A clear red color */
-  font-size: 0.875rem; /* Slightly smaller than default text */
+  color: #d93025; 
+  font-size: 0.875rem; 
   margin-top: 4px;
   display: block;
   font-weight: 500;
@@ -1309,102 +1281,98 @@ nav.scrolled .menu-toggle .line {
   border: none;
   border-top: 1px solid #ccc;
   margin: 70px auto;
-  width: 90%; /* makes it not touch the edges */
+  width: 90%;
 }
 
 .line-with-container {
   position: relative;
   width: 100%;
-  height: 0.5px;             /* thickness of the horizontal line */
-  background-color: #000;  /* color of the line */
-  margin: 40px 0;          /* spacing above and below */
-  
+  height: 0.5px;
+  background-color: #000; 
+  margin: 40px 0; 
 }
 
 .line-with-container .container {
   position: absolute;
-  left: 50%;               /* center horizontally */
-  top: 50%;                /* center vertically relative to line */
+  left: 50%; 
+  top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFE4D6; /* container background */
+  background-color: #ffe4d6;
   padding: 10px 20px;
   border-radius: 30px;
 }
-.container p{
+.container p {
   font-size: 15px;
   color: #000;
   white-space: nowrap;
 }
 
-
-
-.footer-first{
+.footer-first {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.lets-connect{
+.lets-connect {
   background-color: #000;
   margin: 0;
 }
-.lets-connect h3{
+.lets-connect h3 {
   font-size: 55px;
   color: white;
   font-weight: 300;
   margin: 0;
 }
-.lets-connect p{
+.lets-connect p {
   margin: 8px 0px;
   white-space: nowrap;
 }
 
-
-
 svg {
-  width: auto;   /* or any value you want */
-  height: 50px;  /* or any value you want */
+  width: auto;
+  height: 50px;
 }
-.footer-second{
+.footer-second {
   display: flex;
   flex-direction: row;
   gap: 30px;
   justify-content: space-between;
 }
-.footer-second > div{
+.footer-second > div {
   max-width: 25%;
 }
-.footer-second h4{
+.footer-second h4 {
   color: white;
   margin: 20px 0;
   font-size: 20px;
 }
-.footer-second p,address{
+.footer-second p,
+address {
   color: white;
   text-transform: capitalize;
   font-size: 15px;
 }
-.footer-third p{
+.footer-third p {
   color: white;
 }
-.footer-third h3{
+.footer-third h3 {
   font-size: 28px;
   font-weight: 100;
 }
-.footer-third h4{
+.footer-third h4 {
   color: white;
   margin: 20px 0px;
 }
-.footer-locations{
+.footer-locations {
   display: flex;
   flex-direction: row;
 }
-.fa-brands{
+.fa-brands {
   color: white;
   font-size: 20px;
 }
-.footer-fourth{
+.footer-fourth {
   margin: 0;
   margin-top: 30px;
   display: flex;
@@ -1412,25 +1380,25 @@ svg {
   justify-content: space-between;
   align-items: end;
 }
-.footer-icons{
+.footer-icons {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
-@media (max-width:768px){
-  .footer > div{
+@media (max-width: 768px) {
+  .footer > div {
     display: flex;
     flex-direction: column;
   }
-  .footer-third{
+  .footer-third {
     display: flex;
     flex-direction: column;
   }
-  .footer-locations{
+  .footer-locations {
     display: flex;
     flex-direction: column;
   }
-  .line-with-container p{
+  .line-with-container p {
     text-align: center;
     font-size: 8px;
   }
