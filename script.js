@@ -175,7 +175,7 @@ function smoothSnap(element, start, end, duration = 500) {
 /* ==================================================
    FIRST CAROUSEL (DRAG + AUTO + SNAP + LOOP)
 ================================================== */
-const scroller = document.getElementById("scroller");
+const scroller = document.getElementsByClassName("scroller1")[0];
 if(scroller){
   const cards = Array.from(scroller.children);
   scroller.append(...cards.map(c=>c.cloneNode(true)), ...cards.map(c=>c.cloneNode(true)));
@@ -245,7 +245,7 @@ window.addEventListener('load', () => {
   const cardWidth = cards[0].offsetWidth + gap;
   const totalCards = cards.length;
   let currentIndex = 0;
-  const autoScrollInterval = 3000; // ms per card
+  const autoScrollInterval = 2000; // ms per card
   let autoScrollTimer;
   let isHovered = false;
 
