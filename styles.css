@@ -22,7 +22,7 @@ body {
   border-radius: 30px;
   width: 35%;
   height: 100%;
-  margin: 30px;
+  margin: 30px 30px 30px 0px;
   transform: rotate(-5deg);
   transition: transform 0.3s ease;
   transform-origin: center;
@@ -43,7 +43,6 @@ body {
   justify-content: space-around;
   align-items: left;
 }
-
 .main-quote {
   display: flex;
   flex-direction: column;
@@ -79,7 +78,7 @@ body {
 
 section {
   text-align: left;
-  margin: 30px 60px;
+  margin: 30px 100px;
   display: block;
   justify-content: space-evenly;
 }
@@ -350,6 +349,16 @@ section .team-talk p {
 .btn {
   color: #e6753b;
 }
+.footer-btn{
+  background-color: #e6753b;
+  color: white;
+}
+.footer-btn:hover{
+  background: #e69500;
+
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
 .contact-button:hover {
   background-color: #e69500;
 }
@@ -446,7 +455,7 @@ section .team-talk p {
   justify-content: space-evenly;
   color: #fff;
   z-index: 2;
-  padding: 60px;
+  padding: 100px;
   display: flex;
   flex-direction: row;
 }
@@ -552,8 +561,8 @@ section .team-talk p {
   display: flex;
   flex-direction: column;
   padding-top: 94px;
-  padding-left: 60px;
-  padding-right: 60px;
+  align-items: center;
+  justify-content: center;
 }
 .description > * {
   flex: 1 1 50%;
@@ -783,6 +792,7 @@ address {
 
 #get-in-touch-para {
   margin-top: 46px;
+  color: #000;
 }
 @media (min-width: 1200px) {
   #get-in-touch-para {
@@ -805,8 +815,13 @@ address {
 
 .carousel-wrap1 {
   overflow: hidden;
-  width: 100%;
-  padding: 0 30px;
+  width: 109%;
+  padding: 0;
+   position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .scroller1 {
@@ -1035,6 +1050,12 @@ nav.scrolled .menu-toggle .line {
   font-size: 50px;
   margin: 20px;
 }
+.contactpage p{
+  color: #777777;
+}
+.contactpage address{
+  color: #777777;
+}
 @media (min-width: 1200px) {
   .contactpage h2 {
     margin: 45px;
@@ -1044,6 +1065,7 @@ nav.scrolled .menu-toggle .line {
   color: black;
   font-size: 30px;
   text-align: left;
+  margin: 0 0 20px 0;
 }
 .contactpage label {
   margin-top: 35px;
@@ -1063,6 +1085,9 @@ nav.scrolled .menu-toggle .line {
 .contactpage .background {
   height: 286px;
   background: url("black_background.jpg") no-repeat top center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -1142,10 +1167,6 @@ nav.scrolled .menu-toggle .line {
   .main-quote {
     overflow: hidden;
   }
-  .description {
-    padding: 10px;
-    margin: 20px;
-  }
   .second-line {
     width: 100%;
     margin-top: 40px;
@@ -1181,7 +1202,7 @@ nav.scrolled .menu-toggle .line {
     justify-content: center;
   }
   .partner-image {
-    width: 80%;
+    width: 75%;
     height: auto;
     margin: 0;
     transform: none;
@@ -1272,7 +1293,7 @@ nav.scrolled .menu-toggle .line {
   display: none;
   position: relative;
   margin-top: 20px;
-  padding: 40px 24px 24px 24px;
+  padding: 60px;
   border-radius: 15px;
   background-color: rgba(230, 117, 59, 0.03);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05), 0px 8px 15px rgba(0, 0, 0, 0.1),
@@ -1303,6 +1324,8 @@ nav.scrolled .menu-toggle .line {
   );
   opacity: 0.1;
   z-index: 0;
+  
+  align-items: center;
 }
 
 #form-output:hover {
@@ -1375,6 +1398,13 @@ svg {
   width: auto;
   height: 50px;
 }
+.footer-first-left {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
 .footer-second {
   display: flex;
   flex-direction: row;
@@ -1433,6 +1463,18 @@ address {
     display: flex;
     flex-direction: column;
   }
+  .footer .footer-first{
+    align-items: flex-start;
+    justify-content:center;
+  }
+  .lets-connect h3 {
+    font-size: 36px;
+
+  }
+  svg{
+    width: 36px;
+    height: 36px;
+  }
   .footer-third {
     display: flex;
     flex-direction: column;
@@ -1445,4 +1487,17 @@ address {
     text-align: center;
     font-size: 8px;
   }
+  .footer-second > div {
+  max-width: 50%;
+}
+.footer .footer-fourth{
+  flex-direction: row;
+}
+.footer-fourth img{
+  width: 60%;
+  height: auto;
+}
+.footer-icons{
+  gap: 10px;
+}
 }

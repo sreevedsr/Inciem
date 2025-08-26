@@ -91,7 +91,9 @@ if (contactForm) {
       <p><strong>Phone:</strong> ${escapeHTML(phone)}</p>
       <p><strong>Message:</strong> ${escapeHTML(message)}</p>
     `;
-    formOutput.style.display = "block";
+    formOutput.style.display = "flex";
+    formOutput.style.flexDirection = "column";
+    formOutput.style.alignItems = "center";
     contactForm.reset();
   });
 
@@ -175,7 +177,7 @@ function smoothSnap(element, start, end, duration = 500) {
 /* ==================================================
    FIRST CAROUSEL (DRAG + AUTO + SNAP + LOOP)
 ================================================== */
-const scroller = document.getElementsByClassName("scroller1")[0];
+const scroller = document.getElementById("scroller");
 if(scroller){
   const cards = Array.from(scroller.children);
   scroller.append(...cards.map(c=>c.cloneNode(true)), ...cards.map(c=>c.cloneNode(true)));
@@ -237,98 +239,103 @@ if(scroller){
    SECOND CAROUSEL (AUTO + LOOP, NO DRAG)
 ================================================== */
 window.addEventListener('load', () => {
-  const scroller = document.getElementById("autoScrollCarousel");
-  if (!scroller) return;
+  const scrollers = document.querySelectorAll(".autoScrollCarousel");
 
-  const cards = Array.from(scroller.children);
-  const gap = parseInt(getComputedStyle(scroller).gap) || 0;
-  const cardWidth = cards[0].offsetWidth + gap;
-  const totalCards = cards.length;
-  let currentIndex = 0;
-  const autoScrollInterval = 2000; // ms per card
-  let autoScrollTimer;
-  let isHovered = false;
+  scrollers.forEach(scroller => {
+    const cards = Array.from(scroller.children);
+    const gap = parseInt(getComputedStyle(scroller).gap) || 0;
+    const cardWidth = cards[0].offsetWidth + gap;
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    const autoScrollInterval = 2000; // ms per card
+    let autoScrollTimer;
+    let isHovered = false;
 
-  function smoothSnap(start, end, duration = 500) {
-    let startTime = null;
-    function animate(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      scroller.scrollLeft = start + (end - start) * eased;
-      if (progress < 1) requestAnimationFrame(animate);
+    function smoothSnap(start, end, duration = 500) {
+      let startTime = null;
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        scroller.scrollLeft = start + (end - start) * eased;
+        if (progress < 1) requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
     }
-    requestAnimationFrame(animate);
-  }
 
-  function autoScrollNext() {
-    currentIndex = (currentIndex + 1) % totalCards;
-    const target = currentIndex * cardWidth;
-    smoothSnap(scroller.scrollLeft, target);
-  }
-
-  function startAutoScroll() {
-    if (window.innerWidth < 768) { // small screens only
-      autoScrollTimer = setInterval(() => {
-        if (!isHovered) autoScrollNext();
-      }, autoScrollInterval);
+    function autoScrollNext() {
+      currentIndex = (currentIndex + 1) % totalCards;
+      const target = currentIndex * cardWidth;
+      smoothSnap(scroller.scrollLeft, target);
     }
-  }
 
-  function stopAutoScroll() {
-    clearInterval(autoScrollTimer);
-  }
+    function startAutoScroll() {
+      if (window.innerWidth < 768) { // small screens only
+        autoScrollTimer = setInterval(() => {
+          if (!isHovered) autoScrollNext();
+        }, autoScrollInterval);
+      }
+    }
 
-  // Pause on hover
-  scroller.addEventListener("mouseenter", () => {
-    isHovered = true;
-  });
-  scroller.addEventListener("mouseleave", () => {
-    isHovered = false;
-  });
+    function stopAutoScroll() {
+      clearInterval(autoScrollTimer);
+    }
 
-  // Initialize
-  startAutoScroll();
+    // Pause on hover
+    scroller.addEventListener("mouseenter", () => {
+      isHovered = true;
+    });
+    scroller.addEventListener("mouseleave", () => {
+      isHovered = false;
+    });
 
-  // Reset on resize
-  window.addEventListener("resize", () => {
-    stopAutoScroll();
-    currentIndex = 0;
-    scroller.scrollLeft = 0;
+    // Initialize
     startAutoScroll();
+
+    // Reset on resize
+    window.addEventListener("resize", () => {
+      stopAutoScroll();
+      currentIndex = 0;
+      scroller.scrollLeft = 0;
+      startAutoScroll();
+    });
   });
 });
+
 window.addEventListener('load', () => {
-  const scroller = document.getElementById("autoScrollCarousel1");
-  if (!scroller) return;
+  const scrollers = document.querySelectorAll(".auto-scroll-carousel1"); // ✅ use class instead of id
+  if (!scrollers.length) return;
 
-  const cards = Array.from(scroller.children);
-  const gap = parseInt(getComputedStyle(scroller).gap) || 0;
-  const cardWidth = cards[0].offsetWidth + gap;
+  scrollers.forEach(scroller => {
+    const cards = Array.from(scroller.children);
+    const gap = parseInt(getComputedStyle(scroller).gap) || 0;
+    const cardWidth = cards[0].offsetWidth + gap;
 
-  // Duplicate cards to create infinite loop
-  scroller.append(...cards.map(card => card.cloneNode(true)));
-  scroller.append(...cards.map(card => card.cloneNode(true)));
+    // Duplicate cards to create infinite loop
+    scroller.append(...cards.map(card => card.cloneNode(true)));
+    scroller.append(...cards.map(card => card.cloneNode(true)));
 
-  const totalWidth = scroller.scrollWidth / 3; // width of original set
-  scroller.scrollLeft = totalWidth; // start from middle set
+    const totalWidth = scroller.scrollWidth / 3; // width of original set
+    scroller.scrollLeft = totalWidth; // start from middle set
 
-  const speed = 1; // pixels per frame
-  let rafId;
+    const speed = 1; // pixels per frame
+    let rafId;
 
-  function scrollLoop() {
-    scroller.scrollLeft += speed;
+    function scrollLoop() {
+      scroller.scrollLeft += speed;
 
-    // Loop around seamlessly
-    if (scroller.scrollLeft >= totalWidth * 2) {
-      scroller.scrollLeft -= totalWidth;
+      // Loop around seamlessly
+      if (scroller.scrollLeft >= totalWidth * 2) {
+        scroller.scrollLeft -= totalWidth;
+      }
+
+      rafId = requestAnimationFrame(scrollLoop);
     }
 
-    rafId = requestAnimationFrame(scrollLoop);
-  }
-
-  scrollLoop();
+    scrollLoop();
+  });
 });
+
 
 window.addEventListener('load', () => {
   const scroller = document.querySelector('.info-carousel');
