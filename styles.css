@@ -1341,6 +1341,9 @@ nav.scrolled .menu-toggle .line {
   font-weight: 500;
   font-family: "Poppins", sans-serif;
 }
+blockquote{
+  color: black;
+}
 .section-divider {
   border: none;
   border-top: 1px solid #ccc;

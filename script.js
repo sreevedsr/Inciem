@@ -57,79 +57,97 @@ if (!isMobile) {
 /* ==================================================
    CONTACT FORM VALIDATION
 ================================================== */
-const contactForm = document.getElementById("contact-form");
-const formOutput = document.getElementById("form-output");
-const formElements = Array.from(document.querySelectorAll("#contact-form input, #contact-form textarea"));
-const sendButton = document.querySelector('#contact-form button[type="submit"]');
+// const contactForm = document.getElementById("contact-form");
+// const formOutput = document.getElementById("form-output");
+// const formElements = Array.from(document.querySelectorAll("#contact-form input, #contact-form textarea"));
+// const sendButton = document.querySelector('#contact-form button[type="submit"]');
 
-if (contactForm) {
-  contactForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    clearErrors();
+// if (contactForm) {
+//   contactForm.addEventListener("submit", function(e) {
+//     e.preventDefault();
+//     clearErrors();
 
-    const firstName = contactForm["first_name"].value.trim();
-    const lastName = contactForm["last_name"].value.trim();
-    const email = contactForm["email"].value.trim();
-    const phone = contactForm["phone"].value.trim();
-    const message = contactForm["message"].value.trim();
-    let isValid = true;
+//     const firstName = contactForm["first_name"].value.trim();
+//     const lastName = contactForm["last_name"].value.trim();
+//     const email = contactForm["email"].value.trim();
+//     const phone = contactForm["phone"].value.trim();
+//     const message = contactForm["message"].value.trim();
+//     let isValid = true;
 
-    if (!firstName) { showError("first-name", "First name cannot be empty."); isValid = false; }
-    if (!lastName) { showError("last-name", "Last name cannot be empty."); isValid = false; }
-    if (!email) { showError("email", "Email is required."); isValid = false; }
-    else if (!validateEmail(email)) { showError("email", "Invalid email format."); isValid = false; }
-    if (!phone) { showError("phone", "Phone is required."); isValid = false; }
-    else if (!/^\+?[0-9\s\-]{7,15}$/.test(phone)) { showError("phone", "Invalid phone number."); isValid = false; }
+//     if (!firstName) { showError("first-name", "First name cannot be empty."); isValid = false; }
+//     if (!lastName) { showError("last-name", "Last name cannot be empty."); isValid = false; }
+//     if (!email) { showError("email", "Email is required."); isValid = false; }
+//     else if (!validateEmail(email)) { showError("email", "Invalid email format."); isValid = false; }
+//     if (!phone) { showError("phone", "Phone is required."); isValid = false; }
+//     else if (!/^\+?[0-9\s\-]{7,15}$/.test(phone)) { showError("phone", "Invalid phone number."); isValid = false; }
 
-    if (!isValid) { formOutput.innerHTML = ""; formOutput.style.display = "none"; return; }
+//     if (!isValid) { formOutput.innerHTML = ""; formOutput.style.display = "none"; return; }
 
-    formOutput.innerHTML = `
-      <h3>Submitted Details:</h3>
-      <p><strong>First Name:</strong> ${escapeHTML(firstName)}</p>
-      <p><strong>Last Name:</strong> ${escapeHTML(lastName)}</p>
-      <p><strong>Email:</strong> ${escapeHTML(email)}</p>
-      <p><strong>Phone:</strong> ${escapeHTML(phone)}</p>
-      <p><strong>Message:</strong> ${escapeHTML(message)}</p>
-    `;
-    formOutput.style.display = "flex";
-    formOutput.style.flexDirection = "column";
-    formOutput.style.alignItems = "center";
-    contactForm.reset();
-  });
+//     formOutput.innerHTML = `
+//       <h3>Submitted Details:</h3>
+//       <p><strong>First Name:</strong> ${escapeHTML(firstName)}</p>
+//       <p><strong>Last Name:</strong> ${escapeHTML(lastName)}</p>
+//       <p><strong>Email:</strong> ${escapeHTML(email)}</p>
+//       <p><strong>Phone:</strong> ${escapeHTML(phone)}</p>
+//       <p><strong>Message:</strong> ${escapeHTML(message)}</p>
+//     `;
+//     formOutput.style.display = "flex";
+//     formOutput.style.flexDirection = "column";
+//     formOutput.style.alignItems = "center";
+//     contactForm.reset();
+//   });
 
-  // Enter key navigation
+//   // Enter key navigation
+//   formElements.forEach((el, index) => {
+//     el.addEventListener("keydown", (event) => {
+//       if (event.key === "Enter") {
+//         event.preventDefault();
+//         const nextIndex = index + 1;
+//         if (nextIndex < formElements.length) formElements[nextIndex].focus();
+//         else sendButton.focus();
+//       }
+//     });
+//   });
+// }
+
+// function showError(fieldId, message) {
+//   const field = document.getElementById(fieldId);
+//   if (!field) return;
+//   let error = document.createElement("small");
+//   error.className = "error-message";
+//   error.style.color = "red";
+//   error.textContent = message;
+//   if (!field.nextElementSibling || !field.nextElementSibling.classList.contains("error-message"))
+//     field.parentNode.insertBefore(error, field.nextSibling);
+// }
+
+// function clearErrors() { document.querySelectorAll(".error-message").forEach(el => el.remove()); }
+// function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+// function escapeHTML(text) {
+//   return text.replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[m]));
+// }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const formElements = Array.from(document.querySelectorAll("#contact-form input, #contact-form textarea"));
+  const submitButton = document.querySelector("#contact-form button[type='submit']");
+
   formElements.forEach((el, index) => {
     el.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        event.preventDefault();
+        event.preventDefault(); // prevent form submission
         const nextIndex = index + 1;
-        if (nextIndex < formElements.length) formElements[nextIndex].focus();
-        else sendButton.focus();
+        if (nextIndex < formElements.length) {
+          formElements[nextIndex].focus(); // move to next field
+        } else {
+          submitButton.focus(); // last field → focus submit button
+        }
       }
     });
   });
-}
-
-function showError(fieldId, message) {
-  const field = document.getElementById(fieldId);
-  if (!field) return;
-  let error = document.createElement("small");
-  error.className = "error-message";
-  error.style.color = "red";
-  error.textContent = message;
-  if (!field.nextElementSibling || !field.nextElementSibling.classList.contains("error-message"))
-    field.parentNode.insertBefore(error, field.nextSibling);
-}
-
-function clearErrors() { document.querySelectorAll(".error-message").forEach(el => el.remove()); }
-function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
-function escapeHTML(text) {
-  return text.replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[m]));
-}
-
+});
 
 /* ==================================================
-   COUNTERS WITH INTERSECTION OBSERVER
+   COUNTERS WITH INTERSECTION OBSERVER   
 ================================================== */
 const counters = document.querySelectorAll('.count');
 
