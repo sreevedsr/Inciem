@@ -35,8 +35,13 @@ class ContactController
 
         $errors = [];
 
-        if (empty($first_name))
+        if (empty($first_name)) {
             $errors['first_name'] = "First name is required";
+        } elseif (!preg_match("/^[a-zA-Z ]+$/", $first_name)) {
+            $errors["first_name"] = "First Name can only be letters and spaces";
+        }
+
+
         if (empty($last_name))
             $errors['last_name'] = "Last name is required";
         if (empty($email))
@@ -51,8 +56,7 @@ class ContactController
 
             if (!ctype_digit($cleanPhone)) {
                 $errors['phone'] = "Phone number can contain only digits";
-            }
-            elseif (strlen($cleanPhone) < 7 || strlen($cleanPhone) > 10) {
+            } elseif (strlen($cleanPhone) < 7 || strlen($cleanPhone) > 10) {
                 $errors['phone'] = "Phone number must be between 7 and 10 digits";
             }
         }
