@@ -148,14 +148,17 @@ unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old_input']);
               <label for="first-name">First Name</label>
               <input type="text" id="first-name" name="first_name"
                 value="<?php echo htmlspecialchars($old['first_name'] ?? ''); ?>" required />
+                <?php if (!empty($errors['first_name'])): ?>
+                  <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['first_name']) ?></span>
+                <?php endif; ?>
             </div>
-            <?php if (!empty($errors['first_name'])): ?>
-              <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['first_name']) ?></span>
-            <?php endif; ?>
             <div class="form-group">
               <label for="last-name">Last Name</label>
               <input type="text" id="last-name" name="last_name"
                 value="<?php echo htmlspecialchars($old['last_name'] ?? ''); ?>" required />
+                <?php if (!empty($errors['last_name'])): ?>
+              <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['last_name']) ?></span>
+            <?php endif; ?>
             </div>
           </div>
 
@@ -164,28 +167,29 @@ unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old_input']);
               <label for="email">Email</label>
               <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>"
                 required />
+                <?php if (!empty($errors['email'])): ?>
+              <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['email']) ?></span>
+            <?php endif; ?>
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
               <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($old['phone'] ?? ''); ?>" />
+              <?php if (!empty($errors['phone'])): ?>
+              <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['phone']) ?></span>
+            <?php endif; ?>
             </div>
           </div>
 
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5"
-              required><?php echo htmlspecialchars($old['message'] ?? ''); ?></textarea>
+              ><?php echo htmlspecialchars($old['message'] ?? ''); ?></textarea>
           </div>
 
           <button type="submit">Send</button>
         </form>
 
         <div class="contact-messages" style="display:flex; flex-direction:column; margin-top:20px;">
-          <?php if (!empty($errors)): ?>
-            <?php foreach ($errors as $error): ?>
-              <p style="color:red; margin-bottom:10px;"><?php echo $error; ?></p>
-            <?php endforeach; ?>
-          <?php endif; ?>
 
           <?php if (!empty($success)): ?>
             <p style="color:green;"><?php echo $success; ?></p>

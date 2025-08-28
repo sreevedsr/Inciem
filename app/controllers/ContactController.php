@@ -1,15 +1,12 @@
 <?php
 class ContactController
 {
-
-    // Main entry
     public function index()
     {
         session_start();
 
-        // If form is submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $result = $this->validate($_POST); // call separate validation method
+            $result = $this->validate($_POST);
 
             if (!empty($result['errors'])) {
                 $_SESSION['errors'] = $result['errors'];
@@ -18,16 +15,13 @@ class ContactController
                 $_SESSION['success'] = $result['success'];
             }
 
-            // Redirect back to the contact page
             header("Location: index.php?page=contact");
             exit;
         }
 
-        // Load view
         require_once __DIR__ . '/../views/contact.php';
     }
 
-    // Separate validation method
     private function validate($data)
     {
         $errors = [];
@@ -49,14 +43,35 @@ class ContactController
             $errors['email'] = "Email is required";
         if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = "Invalid email";
-        if (empty($message))
-            $errors['message'] = "Message is required";
-
-
-        // Success
-        if (empty($errors)) {
-            $success = "Form submitted successfully!";
+        if (empty($phone)) {
+            $errors['phone'] = "Phone number is required";
         }
+        if (!empty($phone)) {
+            $cleanPhone = trim($phone);
+
+            if (!ctype_digit($cleanPhone)) {
+                $errors['phone'] = "Phone number can contain only digits";
+            }
+            elseif (strlen($cleanPhone) < 7 || strlen($cleanPhone) > 10) {
+                $errors['phone'] = "Phone number must be between 7 and 10 digits";
+            }
+        }
+        if (empty($errors)) {
+            $success = "<div style='padding:15px; border:1px solid #4CAF50; background:#d4edda; color:#155724; border-radius:5px;'>
+                    <h4>Thank you, " . htmlspecialchars($first_name) . "!</h4>
+                    <p>Your message has been received successfully. Here’s a summary of what you submitted:</p>
+                    <ul>
+                        <li><strong>Full Name:</strong> " . htmlspecialchars($first_name . " " . $last_name) . "</li>
+                        <li><strong>Email:</strong> " . htmlspecialchars($email) . "</li>
+                        <li><strong>Phone:</strong> " . htmlspecialchars($phone) . "</li>
+                        <li><strong>Message:</strong> " . nl2br(htmlspecialchars($message)) . "</li>
+                    </ul>
+                    <p>We will get back to you as soon as possible!</p>
+                </div>";
+
+            $_SESSION['success'] = $success;
+        }
+
 
         return ['errors' => $errors, 'success' => $success];
     }
