@@ -1,3 +1,14 @@
+<?php
+
+// Retrieve messages and old input from session
+$errors = $_SESSION['errors'] ?? [];
+$success = $_SESSION['success'] ?? '';
+$old = $_SESSION['old_input'] ?? [];
+
+// Clear session data
+unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old_input']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body class="contactpage">
@@ -38,16 +49,16 @@
         <span class="line line4"></span>
       </button>
 
-      <a href="contact.html" class="contact-button">Get in Touch</a>
+      <a href="index.php?page=contact" class="contact-button">Get in Touch</a>
     </div>
   </nav>
 
   <main class="background">
     <h1>Contact Us</h1>
     <div class="contact-links" role="navigation" aria-label="Breadcrumb navigation">
-      <a href="index.php"><span>Home</span></a>
+      <a href="index.php?page=home"><span>Home</span></a>
       <span aria-hidden="true">|</span>
-      <a href="contact.php" aria-current="page"><span>Contact</span></a>
+      <a href="index.php?page=contact" aria-current="page"><span>Contact</span></a>
     </div>
   </main>
 
@@ -129,112 +140,64 @@
 
 
       <div class="contact-right">
-        <form id="contact-form" class="contact-form" novalidate method="post" action="">
+        <form id="contact-form" class="contact-form" novalidate method="post" action="index.php?page=contact">
           <h3>Send a Message</h3>
 
           <div class="form-row">
             <div class="form-group">
               <label for="first-name">First Name</label>
               <input type="text" id="first-name" name="first_name"
-                value="<?php echo isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : ''; ?>"
-                required />
+                value="<?php echo htmlspecialchars($old['first_name'] ?? ''); ?>" required />
             </div>
+            <?php if (!empty($errors['first_name'])): ?>
+              <span style="color:red; font-size:0.9em;"><?= htmlspecialchars($errors['first_name']) ?></span>
+            <?php endif; ?>
             <div class="form-group">
               <label for="last-name">Last Name</label>
               <input type="text" id="last-name" name="last_name"
-                value="<?php echo isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : ''; ?>"
-                required />
+                value="<?php echo htmlspecialchars($old['last_name'] ?? ''); ?>" required />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email"
-                value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required />
+              <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>"
+                required />
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone"
-                value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>" />
+              <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($old['phone'] ?? ''); ?>" />
             </div>
           </div>
 
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5"
-              required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+              required><?php echo htmlspecialchars($old['message'] ?? ''); ?></textarea>
           </div>
 
           <button type="submit">Send</button>
-
-          <div id="form-output" aria-live="polite" style="margin-top: 20px; font-weight: bold"></div>
         </form>
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          // Collect & sanitize inputs
-          $first_name = trim($_POST['first_name']);
-          $last_name = trim($_POST['last_name']);
-          $email = trim($_POST['email']);
-          $phone = trim($_POST['phone']);
-          $message = trim($_POST['message']);
 
-          //Array to hold errors
-          $errors = [];
+        <div class="contact-messages" style="display:flex; flex-direction:column; margin-top:20px;">
+          <?php if (!empty($errors)): ?>
+            <?php foreach ($errors as $error): ?>
+              <p style="color:red; margin-bottom:10px;"><?php echo $error; ?></p>
+            <?php endforeach; ?>
+          <?php endif; ?>
 
-          // Validation checks
-          if (empty($first_name)) {
-            $errors[] = "First name is required.";
-          }
-          if (empty($last_name)) {
-            $errors[] = "Last name is required.";
-          }
-          if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "A valid email is required.";
-          }
-          if (empty($message)) {
-            $errors[] = "Message cannot be empty.";
-          }
-          if (empty($phone)) {
-            $errors[] = "Phone number cannot be empty.";
-          } elseif (!preg_match('/^\+?[0-9]{7,15}$/', $phone)) {
-            $errors[] = "Phone number must contain only digits (optional + at start) and be 7-15 characters long.";
-          }
-
-          if (!empty($errors)) {
-            echo "<h3 style='color:red;'>Please fix the following errors:</h3>";
-            echo "<ul style='color:red;margin:0;padding:0;'>";
-            echo "<div style='display:flex; flex-direction:column;'>";
-            foreach ($errors as $error) {
-              echo "<p style='color:red;margin-bottom:10px;'>$error</p>";
-            }
-            echo "</ul>";
-          } else {
-            // echo "<h3 style='color:green;'>Thank you, $first_name $last_name!</h3>";
-            // echo "<p>We received your message:</p>";
-            // echo "<blockquote>$message</blockquote>";
-            // echo "<p>We will reach out to you at <strong>$email</strong>";
-            // if (!empty($phone)) {
-            //   echo " or call you at <strong>$phone</strong>";
-            // }
-            // echo ".</p>";
-            echo "<h3 style='color:green;'>Thank you, " . htmlspecialchars($first_name) . " " . htmlspecialchars($last_name) . "!</h3>";
-            echo "<p>We received your message:</p>";
-            echo "<blockquote>" . htmlspecialchars(string: $message) . "</blockquote>";
-            echo "<p>We will reach out to you at <strong>" . htmlspecialchars($email) . "</strong>";
-            echo " or call you at <strong>" . htmlspecialchars($phone) . "</strong>";
-            echo ".</p>";
-          }
-          echo "</div>";
-        }
-        ?>
+          <?php if (!empty($success)): ?>
+            <p style="color:green;"><?php echo $success; ?></p>
+          <?php endif; ?>
+        </div>
       </div>
 
     </div>
 
   </section>
 
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
