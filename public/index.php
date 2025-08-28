@@ -1,5 +1,4 @@
 <?php
-// Get page from URL
 $page = $_GET['page'] ?? 'home';
 switch ($page) {
     case 'contact':

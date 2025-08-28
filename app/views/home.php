@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mobile App Development & Digital Marketing Experts Kerala</title>
     <link rel="stylesheet" href="assets\css\styles.css" />
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,7 +17,6 @@
 <body class="mainpage">
     <nav>
         <div class="logo"></div>
-        <!-- Main menu -->
         <ul id="menu">
             <div class="menu-header">
                 <div class="logo"></div>
@@ -31,7 +29,6 @@
             <li><a href="#careers">Careers</a></li>
         </ul>
 
-        <!-- Actions (always visible, even on mobile) -->
         <div class="nav-actions">
             <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
                 <span class="line line1"></span>
@@ -469,9 +466,7 @@
                 <div class="footer-first-left">
                     <h3>Let's Connect</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                        <!-- Black box background (no stroke) -->
                         <rect x="0" y="0" width="20" height="20" fill="black" />
-                        <!-- Arrow with black fill + thin white rounded stroke -->
                         <path d="M16,11H14V7.365L5.658,15.707 4.244,14.293 12.537,6H9V4h7Z" fill="black" stroke="white"
                             stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -566,5 +561,4 @@
 
     <script src="assets/js/script.js"></script>
 </body>
-
 </html>

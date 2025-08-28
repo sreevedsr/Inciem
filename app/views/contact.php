@@ -1,11 +1,7 @@
 <?php
-
-// Retrieve messages and old input from session
 $errors = $_SESSION['errors'] ?? [];
 $success = $_SESSION['success'] ?? '';
 $old = $_SESSION['old_input'] ?? [];
-
-// Clear session data
 unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old_input']);
 ?>
 
@@ -16,14 +12,11 @@ unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old_input']);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact - Inciem</title>
-
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- Google Fonts preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body class="contactpage">
